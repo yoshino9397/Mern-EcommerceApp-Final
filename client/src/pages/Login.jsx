@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 30%;
   padding: 20px;
   background-color: white;
   @media ${device.sm} {
@@ -39,7 +39,7 @@ const Form = styled.form`
 const Input = styled.input`
   flex: 1;
   min-width: 60%;
-  margin: 13px 0;
+  margin: 15px 0;
   padding: 10px;
 `;
 
