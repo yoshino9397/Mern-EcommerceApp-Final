@@ -6,7 +6,7 @@ import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { device } from "../responsive";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div``;
 

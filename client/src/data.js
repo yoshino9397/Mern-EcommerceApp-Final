@@ -32,13 +32,13 @@ export const categories = [
     id: 2,
     img: "https://live.staticflickr.com/65535/49640831977_1912c2faa1_b.jpg",
     title: "LOUNGEWEAR LOVE",
-    cat:"coat"
+    cat:"clothes"
   },
   {
     id: 3,
     img: "https://live.staticflickr.com/65535/49618520486_8cef8bac77_b.jpg",
     title: "LIGHT JACKETS",
-    cat:"jeans"
+    cat:"hoodie"
   },
 ];
 
