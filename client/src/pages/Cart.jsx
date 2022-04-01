@@ -1,10 +1,18 @@
-import { MdOutlineAdd } from "react-icons/md";
-import { MdOutlineRemove } from "react-icons/md";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { MdOutlineAdd, MdOutlineRemove } from "react-icons/md";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { device } from "../responsive";
+import StripeCheckout from "react-stripe-checkout";
+import { useNavigate } from "react-router";
+import { userRequest } from "../requestMethods";
+
+// const KEY = process.env.REACT_APP_STRIPE;
+const KEY =
+  "pk_test_51KfrjdF19OTpJSTE2oCDz7OnY2ZoOknrgnjXuMQ577CxryPXSRQ1MQU7YtRYfWZP4E9Lai9rr7JwATolbgMDk5na004ZJR6za9";
 
 const Container = styled.div``;
 
@@ -164,6 +172,32 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate();
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        // navigate("/success", {
+        //   stripeData: res.data,
+        //   products: cart,
+        // });
+        navigate("/success", {
+          data: res.data,
+        });
+      } catch {}
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, cart.total, navigate]);
+
   return (
     <Container>
       <Navbar />
@@ -180,63 +214,43 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://live.staticflickr.com/65535/51941546650_c9c1248735_b.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> OUT OF ORDER T-SHIRT
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="#013766" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <MdOutlineAdd />
-                  <ProductAmount>2</ProductAmount>
-                  <MdOutlineRemove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b> {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b>
+                      {product._id}
+                    </ProductId>
+                    <ProductColor color={product.color} />
+                    <ProductSize>
+                      <b>Size:</b> {product.size}
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <MdOutlineAdd />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <MdOutlineRemove />
+                  </ProductAmountContainer>
+                  <ProductPrice>
+                    $ {product.price * product.quantity}
+                  </ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://live.staticflickr.com/65535/51939942692_9e93d5d4e2_b.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> NO WALK SHIBA-INU HOODIE
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <MdOutlineAdd />
-                  <ProductAmount>1</ProductAmount>
-                  <MdOutlineRemove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -248,9 +262,20 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <StripeCheckout
+              name="MadeDay"
+              image="https://live.staticflickr.com/65535/51973287832_d09dab45c5_c.jpg"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
