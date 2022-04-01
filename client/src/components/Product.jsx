@@ -1,7 +1,6 @@
-import { MdFavorite } from "react-icons/md";
-import { MdSearch } from "react-icons/md";
-import { MdShoppingCart } from "react-icons/md";
+import { MdFavorite, MdSearch, MdShoppingCart } from "react-icons/md";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Info = styled.div`
   opacity: 0;
@@ -72,7 +71,10 @@ const Product = ({ item }) => {
           <MdShoppingCart />
         </Icon>
         <Icon>
-          <MdSearch />
+          <Link to={`/product/${item._id}`}>
+            {" "}
+            <MdSearch />
+          </Link>
         </Icon>
         <Icon>
           <MdFavorite />
