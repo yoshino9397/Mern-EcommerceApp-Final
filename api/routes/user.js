@@ -51,7 +51,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET ALL USER
-router.get("/", async (req, res) => {
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
   /// verifyTokenAndAdmin抜いた
   const query = req.query.new;
   try {
@@ -65,8 +65,8 @@ router.get("/", async (req, res) => {
 });
 
 //GET USER STATS
-router.get("/stats",  async (req, res) => {
-   /// verifyTokenAndAdmin抜いた
+router.get("/stats", verifyTokenAndAdmin,async (req, res) => {
+  /// verifyTokenAndAdmin抜いた
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
   try {
