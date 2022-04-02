@@ -11,7 +11,15 @@ const Login = () => {
     login(dispatch, { username, password });
   };
   return (
-    <div>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <input
         style={{ padding: 10, marginBottom: 20 }}
         type="text"
