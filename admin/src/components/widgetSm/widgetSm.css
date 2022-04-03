@@ -9,6 +9,7 @@
 .widgetSmTitle{
     font-size: 22px;
     font-weight: 600;
+    color:#3d677b;
 }
 
 .widgetSmImg{
@@ -28,8 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px;
-}
+    margin: 20px 0px;}
 
 .widgetSmUser{
     display: flex;

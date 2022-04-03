@@ -7,12 +7,12 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">lamaadmin</span>
+          <span className="logo">BFadmin</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
             <NotificationsNone />
-            <span className="topIconBadge">2</span>
+            <span className="topIconBadge">3</span>
           </div>
           <div className="topbarIconContainer">
             <Language />
@@ -21,7 +21,11 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <Settings />
           </div>
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
+          <img
+            src="https://live.staticflickr.com/65535/51973287832_d09dab45c5_c.jpg"
+            alt=""
+            className="topAvatar"
+          />
         </div>
       </div>
     </div>

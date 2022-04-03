@@ -34,7 +34,7 @@ export default function WidgetLg() {
             <tr className="widgetLgTr" key={order._id}>
               <td className="widgetLgUser">
                 <img
-                  src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                  src="https://live.staticflickr.com/65535/51976516184_3bcba6a804.jpg"
                   alt=""
                   className="widgetLgImg"
                 />
