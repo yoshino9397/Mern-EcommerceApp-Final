@@ -84,7 +84,7 @@ export default function NewProduct() {
           <input
             name="title"
             type="text"
-            placeholder="Apple Airpods"
+            placeholder="Fish Bone"
             onChange={handleChange}
           />
         </div>

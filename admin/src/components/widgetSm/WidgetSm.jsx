@@ -25,7 +25,7 @@ export default function WidgetSm() {
             <img
               src={
                 user.img ||
-                "https://live.staticflickr.com/65535/51976516184_3bcba6a804.jpg"
+                "https://live.staticflickr.com/65535/51978404588_b3fe57fa1b.jpg"
               }
               alt=""
               className="widgetSmImg"
