@@ -81,9 +81,13 @@ const FilterColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 2px solid ${(props) => props.color};
   background-color: ${(props) => props.color};
   margin: 0px 5px;
   cursor: pointer;
+  &:hover {
+    border: 2px solid #ff6d69;
+  }
 `;
 
 const FilterSize = styled.select`

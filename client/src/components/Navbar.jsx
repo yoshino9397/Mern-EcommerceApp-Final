@@ -70,7 +70,7 @@ const Right = styled.div`
   }
 `;
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   margin-left: 25px;
   @media ${device.sm} {
@@ -78,6 +78,10 @@ const MenuItem = styled.div`
     margin-left: 10px;
   }
 `;
+const linkStyle = {
+  textDecoration: "none",
+  color: "black",
+};
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -92,11 +96,18 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>MadeDay</Logo>
+          <Link to="/" style={linkStyle}>
+            <Logo>MadeDay</Logo>
+          </Link>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <Link to={`/products/clothes`} style={linkStyle}>
+            <MenuItem>Products</MenuItem>
+          </Link>
+          <Link to="/login" style={linkStyle}>
+            <MenuItem>SIGN IN</MenuItem>
+          </Link>
+
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="error">
