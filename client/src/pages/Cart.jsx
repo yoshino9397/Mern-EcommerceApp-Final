@@ -185,15 +185,15 @@ const Cart = () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: 500,
+          amount: cart.total * 100,
+        });
+        navigate("/success", {
+          stripeData: res.data,
+          products: cart,
         });
         // navigate("/success", {
-        //   stripeData: res.data,
-        //   products: cart,
+        //   data: res.data,
         // });
-        navigate("/success", {
-          data: res.data,
-        });
       } catch {}
     };
     stripeToken && makeRequest();
@@ -238,7 +238,9 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <MdOutlineAdd style={{ cursor: "pointer" }} />
+                    <MdOutlineAdd
+                      style={{ cursor: "pointer" }}
+                    />
                     <ProductAmount>{product.quantity}</ProductAmount>
                     <MdOutlineRemove style={{ cursor: "pointer" }} />
                   </ProductAmountContainer>
