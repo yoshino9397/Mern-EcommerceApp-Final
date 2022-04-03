@@ -175,7 +175,6 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const onToken = (token) => {
     setStripeToken(token);
@@ -200,13 +199,6 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
 
-  const handleQuantity = (type) => {
-    if (type === "dec") {
-      quantity > 1 && setQuantity(quantity - 1);
-    } else {
-      setQuantity(quantity + 1);
-    }
-  };
   return (
     <Container>
       <Navbar />
