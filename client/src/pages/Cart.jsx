@@ -9,6 +9,7 @@ import { device } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router";
 import { userRequest } from "../requestMethods";
+import { Link } from "react-router-dom";
 
 // const KEY = process.env.REACT_APP_STRIPE;
 const KEY =
@@ -205,19 +206,22 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <Link to={`/products/clothes`}>
+            <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
-            {cart.products.map((product) => (
-              <Product>
+            {cart.products.map((product, item) => (
+              <Product item={item} key={item.id}>
                 <ProductDetail>
-                  <Image src={product.img} />
+                  <Link to={`/product/${product._id}`}>
+                    <Image src={product.img} />
+                  </Link>
                   <Details>
                     <ProductName>
                       <b>Product:</b> {product.title}
@@ -234,9 +238,9 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <MdOutlineAdd />
+                    <MdOutlineAdd style={{ cursor: "pointer" }} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <MdOutlineRemove />
+                    <MdOutlineRemove style={{ cursor: "pointer" }} />
                   </ProductAmountContainer>
                   <ProductPrice>
                     $ {product.price * product.quantity}
@@ -274,7 +278,7 @@ const Cart = () => {
               token={onToken}
               stripeKey={KEY}
             >
-              <Button>CHECKOUT NOW</Button>
+              <Button style={{ cursor: "pointer" }}>CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>

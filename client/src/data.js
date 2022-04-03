@@ -4,38 +4,41 @@ export const sliderItems = [
     img: "https://live.staticflickr.com/3750/11300078694_6154793c72_h.jpg",
     title: "NOW ON SALE",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-    bg: "f5fafd",
+    bg: "Here",
   },
   {
     id: 2,
     img: "https://live.staticflickr.com/2880/9335977141_8d7ba4c37d_5k.jpg",
     title: "AUTUMN COLLECTION",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-    bg: "fcf1ed",
+    bg: "Here",
   },
   {
     id: 3,
     img: "https://live.staticflickr.com/8095/8544581382_3b93cf6982_k.jpg",
     title: "Welcome Beautiful Winter",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-    bg: "fbf0f4",
+    bg: "Here",
   },
 ];
 export const categories = [
   {
     id: 1,
     img: "https://live.staticflickr.com/65535/49753280122_384c3c716a_b.jpg",
-    title: "SHIRT STYLE!",
+    title: "SUPER WOMEN!",
+    cat:"women"
   },
   {
     id: 2,
     img: "https://live.staticflickr.com/65535/49640831977_1912c2faa1_b.jpg",
-    title: "LOUNGEWEAR LOVE",
+    title: "SUMMER LOVE",
+    cat:"tshirt"
   },
   {
     id: 3,
     img: "https://live.staticflickr.com/65535/49618520486_8cef8bac77_b.jpg",
-    title: "LIGHT JACKETS",
+    title: "HOODIE VIBEs",
+    cat:"hoodie"
   },
 ];
 

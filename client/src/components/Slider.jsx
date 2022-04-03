@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { MdArrowBack } from "react-icons/md";
-import { MdArrowForward } from "react-icons/md";
+import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { BsFillDoorOpenFill } from "react-icons/bs";
 import { sliderItems } from "../data";
 import { device } from "../responsive";
 
@@ -79,6 +79,10 @@ const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: 0.3s;
+  &:hover {
+    background-color: #f5f0ce;
+  }
 `;
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -96,14 +100,19 @@ const Slider = () => {
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
         {sliderItems.map((item) => (
-          <Slide>
+          <Slide item={item} key={item.id}>
             <ImgContainer>
               <Image src={item.img} />
             </ImgContainer>
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>{item.bg}</Button>
+              <Button>
+                {item.bg}
+                <BsFillDoorOpenFill
+                  style={{ marginBottom: "-3px", marginLeft: "2px" }}
+                />
+              </Button>
             </InfoContainer>
           </Slide>
         ))}

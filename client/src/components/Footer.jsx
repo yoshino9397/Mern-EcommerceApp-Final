@@ -1,7 +1,6 @@
 import { AiFillInstagram } from "react-icons/ai";
-import { MdFacebook, MdMail, MdPhone } from "react-icons/md";
+import { MdFacebook, MdMail, MdPhone, MdRoom } from "react-icons/md";
 import { BsPinterest } from "react-icons/bs";
-import { MdRoom } from "react-icons/md";
 import {
   FaCcVisa,
   FaTwitter,
