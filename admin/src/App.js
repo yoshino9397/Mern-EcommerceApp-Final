@@ -16,9 +16,9 @@ function App() {
   // const admin = JSON.parse(
   //   JSON.parse(localStorage.getItem("persist:root")).user
   // ).currentUser.isAdmin;
-  // const admin = true;
+  const admin = true;
 
-  const admin = useSelector((state) => state.user.currentUser.isAdmin);
+  // const admin = useSelector((state) => state.user.currentUser.isAdmin);
 
   // const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
   // const currentUser = user && JSON.parse(user).currentUser;
