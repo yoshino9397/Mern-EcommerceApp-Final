@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { userRequest } from "../requestMethods";
+import { useLocation } from "react-router";
 
 const Success = () => {
-  const location = useLocation();
-  const cart = location.state.cart;
-  const data = location.state.stripeData;
+  const cart = useSelector((state) => state.cart);
   const currentUser = useSelector((state) => state.user.currentUser);
   const [orderId, setOrderId] = useState(null);
 
@@ -20,29 +19,54 @@ const Success = () => {
             quantity: item._quantity,
           })),
           amount: cart.total,
-          address: data.billing_details.address,
         });
         setOrderId(res.data._id);
       } catch {}
     };
-    data && createOrder();
-  }, [cart, data, currentUser]);
-
+    createOrder();
+  }, [cart, currentUser]);
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {orderId
-        ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successfully. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
-    </div>
+    <>
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#4a919e",
+        }}
+      >
+        <div
+          style={{
+            width: "30%",
+            padding: "60px 40px",
+            backgroundColor: "white",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h3 style={{ textAlign: "center" }}>
+            Order has been created successfully.
+            <br />
+            {/* Your order number is ${cart.total} */}
+            Your order number is ${cart.total}&{orderId}
+          </h3>
+          <Link to={"/"}>
+            <button
+              style={{
+                padding: 10,
+                marginTop: 20,
+                cursor: "pointer",
+              }}
+            >
+              Go to Homepage
+            </button>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 };
 
