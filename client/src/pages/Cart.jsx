@@ -189,15 +189,12 @@ const Cart = () => {
         });
         navigate("/success", {
           stripeData: res.data,
-          products: cart.total,
+          products: cart,
         });
-        // navigate("/success", {
-        //   data: res.data,
-        // });
       } catch {}
     };
     stripeToken && makeRequest();
-  }, [stripeToken, cart.total, navigate]);
+  }, [stripeToken, cart, navigate]);
 
   return (
     <Container>
@@ -238,9 +235,7 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <MdOutlineAdd
-                      style={{ cursor: "pointer" }}
-                    />
+                    <MdOutlineAdd style={{ cursor: "pointer" }} />
                     <ProductAmount>{product.quantity}</ProductAmount>
                     <MdOutlineRemove style={{ cursor: "pointer" }} />
                   </ProductAmountContainer>

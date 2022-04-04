@@ -7,7 +7,7 @@ const {
 } = require("./verifyToken");
 
 //CREATE
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   ////verifyToken抜いた
   const newOrder = new Order(req.body);
 
@@ -66,7 +66,7 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // GET MONTHLY INCOME
-router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+router.get("/income", async (req, res) => {
   ////verifyTokenAndAdmin抜いた
   const productId = req.query.pid;
   const date = new Date();
