@@ -5,6 +5,8 @@ import Badge from "@mui/material/Badge";
 import { device } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../src/redux/apiCalls";
 
 const Container = styled.div`
   height: 60px;
@@ -84,7 +86,12 @@ const linkStyle = {
 };
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const handleDelete = (user) => {
+    logout(dispatch, user);
+  };
   const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <Container>
       <Wrapper>
@@ -105,7 +112,7 @@ const Navbar = () => {
             <MenuItem>Products</MenuItem>
           </Link>
           <Link to="/login" style={linkStyle}>
-            <MenuItem>SIGN IN</MenuItem>
+            <MenuItem onClick={() => handleDelete()}>Sign out</MenuItem>
           </Link>
 
           <Link to="/cart">
