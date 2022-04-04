@@ -189,7 +189,7 @@ const Cart = () => {
         });
         navigate("/success", {
           stripeData: res.data,
-          products: cart,
+          products: cart.total,
         });
         // navigate("/success", {
         //   data: res.data,
