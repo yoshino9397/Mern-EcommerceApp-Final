@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { reset } from "../redux/cartRedux";
 import { MdOutlineAdd, MdOutlineRemove } from "react-icons/md";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -179,7 +180,7 @@ const Cart = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -191,6 +192,7 @@ const Cart = () => {
           stripeData: res.data,
           products: cart,
         });
+        dispatch(reset());
       } catch {}
     };
     stripeToken && makeRequest();
